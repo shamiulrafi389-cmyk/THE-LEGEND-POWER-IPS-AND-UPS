@@ -97,3 +97,92 @@ footer p:last-child {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
 }
+/* --- ADVANCED FUTURISTIC UI --- */
+
+/* 1. Animated Mesh Gradient Background for Hero Section */
+.hero-v2 {
+    position: relative;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 122, 255, 0.05) 0%, transparent 80%);
+    overflow: hidden;
+}
+
+/* 2. Glassmorphism Card Hover Effect */
+.spec-card, .bento-card {
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.spec-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.spec-card:hover::before {
+    left: 100%;
+}
+
+/* 3. Advanced Floating & Magnetic Feeling */
+@keyframes float-complex {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-15px) rotate(1deg); }
+    66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+.banner-wrapper {
+    animation: float-complex 8s ease-in-out infinite;
+    filter: drop-shadow(0 20px 50px rgba(0, 122, 255, 0.2));
+}
+
+/* 4. Glowing Border for Product Cards */
+.bento-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 40px rgba(0, 122, 255, 0.15), 
+                inset 0 0 20px rgba(0, 122, 255, 0.05);
+}
+
+/* 5. Typography: Smooth Letter Spacing Animation */
+.hero-v2 h1 {
+    transition: letter-spacing 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.hero-v2 h1:hover {
+    letter-spacing: 2px;
+}
+
+/* 6. Mobile Optimization: Tap Feedback */
+@media (max-width: 768px) {
+    .btn-main:active {
+        transform: scale(0.92);
+        background: var(--accent);
+        color: #fff;
+    }
+}
+
+/* 7. Image Tilt/Zoom Effect */
+.image-container img {
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover .image-container img {
+    transform: scale(1.15) rotate(2deg);
+}
+
+/* 8. Navbar Glass Blur Update */
+.navbar {
+    background: rgba(8, 9, 10, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
