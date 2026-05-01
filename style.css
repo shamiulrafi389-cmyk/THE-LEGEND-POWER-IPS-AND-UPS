@@ -186,3 +186,96 @@ footer p:last-child {
     background: rgba(8, 9, 10, 0.7);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
+/* --- ULTIMATE UI/UX ENHANCEMENTS --- */
+
+/* 1. Neumorphic Glow for Contact Section */
+.btn-wa {
+    background: rgba(37, 211, 102, 0.05);
+    border: 1px solid rgba(37, 211, 102, 0.2);
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.1);
+    transition: all 0.4s ease;
+}
+
+.btn-wa:hover {
+    background: #25D366;
+    color: #fff !important;
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
+    transform: translateY(-3px);
+}
+
+/* 2. Magnetic Text Hover for Brand Name */
+.navbar div:first-child {
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+.navbar div:first-child:hover {
+    color: var(--gold);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    letter-spacing: 3px;
+}
+
+/* 3. Skeleton Loading Shine (Smooth Appearance) */
+.active {
+    animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(30px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 4. Product Card Glass Border Shine */
+.bento-card {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bento-card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(120deg, transparent, rgba(0, 122, 255, 0.3), transparent);
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.bento-card:hover::after {
+    opacity: 1;
+}
+
+/* 5. Footer Signature UI Update */
+footer p.interactable {
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    padding: 10px 20px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.05), transparent);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+footer p.interactable:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--gold);
+    color: var(--gold) !important;
+}
+
+/* 6. Dynamic Scroll Progress Bar */
+@keyframes scrollProgress {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: scrollProgress linear;
+    animation-timeline: scroll();
+}
