@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Legend Power | Pro IPS Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- External CSS Link (Ami eta add kore dilam) -->
+    <link rel="stylesheet" href="style.css">
+
     <style>
         :root {
             --bg: #08090a;
@@ -19,7 +23,6 @@
         * { 
             margin: 0; padding: 0; box-sizing: border-box; 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            /* মোবাইলে টাচ করলে যে ডিফল্ট নীল/কালো আভা আসে সেটা রিমুভ করা হলো */
             -webkit-tap-highlight-color: transparent; 
         }
         
@@ -46,7 +49,6 @@
             border-radius: 15px;
         }
 
-        /* Hover (PC) + Active Touch (Mobile) এর জন্য স্টাইল */
         .spec-card:hover, .bento-card:hover, .trust-item:hover, .navbar div:hover,
         .spec-card.touch-active, .bento-card.touch-active, .trust-item.touch-active, .navbar div.touch-active {
             font-weight: 800 !important;
@@ -56,7 +58,6 @@
             background: rgba(255, 255, 255, 0.03);
         }
 
-        /* Hero Text Specific Glow */
         .hero-v2 h1:hover, .hero-v2 h1.touch-active {
             color: var(--gold);
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
@@ -151,7 +152,6 @@
 </head>
 <body>
 
-    <!-- Scroll & Mouse Glow Background -->
     <div class="cursor-glow" id="mouseGlow"></div>
 
     <div id="preloader">
@@ -232,21 +232,17 @@
     </div>
 
     <script>
-        // Smart Mouse Glow Logic (For PC)
         const mouseGlow = document.getElementById('mouseGlow');
         window.addEventListener('mousemove', (e) => {
             mouseGlow.style.setProperty('--x', e.clientX + 'px');
             mouseGlow.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // Touch support for Glow
         window.addEventListener('touchmove', (e) => {
             mouseGlow.style.setProperty('--x', e.touches[0].clientX + 'px');
             mouseGlow.style.setProperty('--y', e.touches[0].clientY + 'px');
         });
 
-        // --- INSTANT TOUCH SCRIPT (NEW) ---
-        // ডিসপ্লেতে টাচ করার সাথে সাথেই যেন অ্যানিমেশন আসে তার জন্য এই কোড
         const interactiveElements = document.querySelectorAll('.interactable, .spec-card, .bento-card, .trust-item, .navbar div, .hero-v2 h1, .banner-wrapper');
         
         interactiveElements.forEach(el => {
@@ -255,19 +251,16 @@
             }, {passive: true});
 
             el.addEventListener('touchend', () => {
-                // টাচ ছাড়ার ২০০ মিলি সেকেন্ড পর ইফেক্টটা স্মুথলি চলে যাবে
                 setTimeout(() => {
                     el.classList.remove('touch-active');
                 }, 200); 
             });
 
-            // স্ক্রল করার সময় যেন ইফেক্ট ক্যানসেল হয়ে যায়
             el.addEventListener('touchcancel', () => {
                 el.classList.remove('touch-active');
             });
         });
 
-        // Entrance Animations
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('preloader').style.opacity = '0';
