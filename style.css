@@ -1,0 +1,99 @@
+/* --- PREMIUM UI ENHANCEMENTS --- */
+
+/* 1. Subtle Floating Animation for Bento Cards */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.bento-card {
+    animation: float 6s ease-in-out infinite;
+    background: linear-gradient(145deg, rgba(25, 26, 28, 0.9), rgba(10, 11, 12, 0.9));
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.bento-card:nth-child(even) {
+    animation-delay: 2s; /* Alada shomoye move korbe */
+}
+
+/* 2. Glassmorphism Pulsing Glow for Icons/Stats */
+.trust-item span {
+    display: inline-block;
+    padding: 10px;
+    background: rgba(0, 122, 255, 0.1);
+    border-radius: 50%;
+    margin-bottom: 10px;
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 122, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0); }
+}
+
+/* 3. Smooth Gradient Text for Headings */
+.hero-v2 h1 {
+    background: linear-gradient(to right, #ffffff, #88888b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 4. Button Shine Effect */
+.btn-main {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-main::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.btn-main:hover::after {
+    left: 120%;
+}
+
+/* 5. Footer Signature Highlight */
+footer p:last-child {
+    background: rgba(255, 255, 255, 0.05);
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+    color: var(--gold) !important;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+/* 6. Advanced Scroll Indicator (Optional logic support) */
+::selection {
+    background: var(--accent);
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
