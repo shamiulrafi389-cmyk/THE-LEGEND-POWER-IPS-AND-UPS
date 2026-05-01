@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Legend Power | Pro IPS Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>The Legend Power | Next-Gen IPS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #08090a;
-            --card-bg: rgba(17, 18, 20, 0.8);
+            --bg: #030303;
+            --card-bg: rgba(20, 20, 22, 0.6);
             --accent: #007AFF; 
             --gold: #FFD700;
-            --text-main: #FFFFFF;
-            --text-dim: #88888b;
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --success: #25D366;
+            --text-main: #f5f5f7;
+            --text-dim: #a1a1a6;
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
         body { 
             background: var(--bg); 
@@ -26,212 +25,188 @@
             scroll-behavior: smooth;
         }
 
-        /* --- PRELOADER --- */
-        #preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #000; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; z-index: 9999;
-            transition: opacity 0.8s ease-in-out, visibility 0.8s;
-            text-align: center;
-        }
-
-        .loader-logo {
-            font-size: clamp(1.5rem, 8vw, 3rem);
-            font-weight: 800; color: var(--gold);
-            letter-spacing: 5px; text-transform: uppercase;
-            animation: textReveal 1.5s ease-out forwards;
-            opacity: 0;
-        }
-
-        @keyframes textReveal {
-            0% { transform: translateY(20px); opacity: 0; filter: blur(10px); }
-            100% { transform: translateY(0); opacity: 1; filter: blur(0); }
-        }
-
-        /* --- ENTRANCE ANIMATIONS --- */
-        .reveal { opacity: 0; transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
-        .from-bottom { transform: translateY(50px); }
-        .from-left { transform: translateX(-50px); }
-        .from-right { transform: translateX(50px); }
-        .active { opacity: 1; transform: translate(0, 0); }
-
-        /* --- MAIN UI --- */
-        .glow {
+        /* --- SMART MOUSE GLOW --- */
+        .cursor-glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% -20%, #1a2a44 0%, transparent 50%);
+            background: radial-gradient(circle 400px at var(--x, 50%) var(--y, 50%), rgba(0, 122, 255, 0.15), transparent);
             z-index: -1; pointer-events: none;
         }
 
-        .navbar { padding: 20px; display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        .hero-v2 { text-align: center; padding: 60px 0; }
-        .hero-v2 h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); font-weight: 800; margin-bottom: 20px; }
-        
-        .banner-wrapper {
-            border-radius: 40px; overflow: hidden; border: 1px solid var(--glass-border);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); margin-top: 40px;
+        /* --- SMART BOLD & BORDER GLOW --- */
+        .smart-el {
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            border: 1px solid transparent;
+            padding: 15px; border-radius: 20px;
         }
-        .main-banner { width: 100%; display: block; }
 
-        /* Technical Excellence */
-        .specs-section { margin-top: 100px; }
+        .smart-el:hover, .smart-el:active {
+            font-weight: 800;
+            color: #fff;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 10px 40px rgba(0, 122, 255, 0.3);
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: #000; display: flex; justify-content: center; align-items: center; z-index: 9999;
+        }
+
+        .loader-logo {
+            font-size: 2rem; font-weight: 800; color: var(--gold);
+            letter-spacing: 8px; animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse { from { opacity: 0.4; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        /* --- UI COMPONENTS --- */
+        .navbar { 
+            padding: 25px; display: flex; justify-content: space-between; 
+            max-width: 1200px; margin: 0 auto; position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .hero-section { text-align: center; padding: 100px 0; }
+        .hero-section h1 { 
+            font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; 
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .banner-box {
+            border-radius: 40px; overflow: hidden; border: 1px solid var(--glass-border);
+            box-shadow: 0 30px 100px rgba(0,0,0,0.8); margin-top: 50px;
+            transition: 0.5s;
+        }
+        .banner-box:hover { transform: scale(1.01); border-color: var(--accent); }
+
         .specs-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px; margin-top: 40px;
+            gap: 25px; margin-top: 60px;
         }
-        .spec-card {
-            background: var(--card-bg); border-radius: 24px; padding: 30px;
-            border: 1px solid var(--glass-border); transition: 0.3s;
+
+        .card-pro {
+            background: var(--card-bg); border: 1px solid var(--glass-border);
+            padding: 40px; border-radius: 35px; backdrop-filter: blur(10px);
         }
-        .spec-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.02); }
-        .spec-card h3 { color: var(--gold); margin-bottom: 10px; }
-        .spec-card p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; }
 
-        /* --- Trust Badge Section --- */
-        .trust-strip {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;
-            margin: 80px 0; padding: 40px; background: rgba(255,255,255,0.02);
-            border-radius: 30px; border: 1px solid var(--glass-border);
+        /* Buttons */
+        .btn-group { display: flex; gap: 15px; margin-top: 30px; }
+        .btn-pro {
+            flex: 1; padding: 18px; border-radius: 20px; font-weight: 600;
+            text-decoration: none; text-align: center; transition: 0.3s;
+            border: none; cursor: pointer;
         }
-        .trust-item { text-align: center; }
-        .trust-item span { display: block; font-size: 1.5rem; margin-bottom: 5px; }
-        .trust-item p { font-size: 0.8rem; font-weight: 700; color: var(--text-dim); letter-spacing: 1px; }
-
-        /* Products */
-        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; margin-top: 60px; }
-        .bento-card { grid-column: span 6; background: var(--card-bg); border-radius: 32px; padding: 40px; border: 1px solid var(--glass-border); transition: 0.4s; }
-        .bento-card:hover { border-color: var(--gold); transform: scale(1.02); }
-        .image-container { width: 100%; height: 250px; background: #000; border-radius: 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
-        .image-container img { width: 85%; height: 85%; object-fit: contain; }
-
-        .actions { display: flex; gap: 12px; }
-        .btn-main { flex: 1; padding: 16px; border-radius: 16px; font-weight: 600; text-decoration: none; text-align: center; transition: 0.3s; }
-        .btn-buy { background: #fff; color: #000; }
-        .btn-buy:hover { background: var(--accent); color: #fff; }
+        .btn-main { background: #fff; color: #000; }
+        .btn-main:active { transform: scale(0.95); }
         .btn-wa { background: rgba(37, 211, 102, 0.1); color: #25D366; border: 1px solid rgba(37, 211, 102, 0.2); }
 
-        footer { padding: 60px 0; text-align: center; border-top: 1px solid var(--glass-border); color: var(--text-dim); margin-top: 100px; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 768px) { .bento-card { grid-column: span 12; } }
+        footer { padding: 80px 0; text-align: center; color: var(--text-dim); font-size: 13px; letter-spacing: 1px; }
+
     </style>
 </head>
 <body>
 
+    <div class="cursor-glow" id="glow"></div>
+
     <div id="preloader">
-        <div class="loader-logo">THE LEGEND POWER</div>
+        <div class="loader-logo">LEGEND</div>
     </div>
 
-    <div class="content-wrap">
-        <div class="glow"></div>
+    <nav class="navbar">
+        <div class="smart-el" style="font-weight: 800; letter-spacing: 2px;">THE LEGEND POWER</div>
+        <div style="font-size: 10px; opacity: 0.6;">FENI, BD</div>
+    </nav>
 
-        <nav class="navbar reveal from-bottom">
-            <div style="font-weight: 800; color: var(--gold); letter-spacing: 2px;">THE LEGEND POWER</div>
-            <div style="font-size: 10px; color: var(--text-dim); font-weight: 700;">FENI | BANGLADESH</div>
-        </nav>
-
-        <div class="container">
+    <div class="container">
+        <section class="hero-section">
+            <h1 class="reveal">Pure Power. <br> Absolute Silence.</h1>
+            <p class="reveal" style="color: var(--text-dim); font-size: 1.1rem;">Engineered for durability with 100% pure copper technology.</p>
             
-            <!-- Hero -->
-            <section class="hero-v2">
-                <h1 class="reveal from-left">Premium Power <br> For Your Home</h1>
-                <p class="reveal from-right" style="color: var(--text-dim); margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">Industrial-grade backup solutions featuring Pure Sine Wave DSP technology. Built for durability, engineered for silence.</p>
-                
-                <div class="banner-wrapper reveal from-bottom">
-                    <img src="images/IMG_7508.png" class="main-banner" alt="Banner">
-                </div>
-            </section>
-
-            <!-- Trust Badges -->
-            <div class="trust-strip reveal from-bottom">
-                <div class="trust-item"><span>✅</span><p>2 YEAR WARRANTY</p></div>
-                <div class="trust-item"><span>🛠️</span><p>HOME SERVICE</p></div>
-                <div class="trust-item"><span>⚡</span><p>ECO SAVER</p></div>
-                <div class="trust-item"><span>🔥</span><p>100% COPPER</p></div>
+            <div class="banner-box reveal">
+                <img src="images/IMG_7508.png" style="width: 100%; display: block;" alt="Banner">
             </div>
+        </section>
 
-            <!-- Specs -->
-            <section class="specs-section">
-                <h2 class="reveal from-left" style="text-align: center; margin-bottom: 50px;">Technical Excellence</h2>
-                <div class="specs-grid">
-                    <div class="spec-card reveal from-bottom">
-                        <h3>100% Pure Copper</h3>
-                        <p>Our heavy-duty transformers use 100% pure copper for ultra-fast charging and heat resistance.</p>
-                    </div>
-                    <div class="spec-card reveal from-bottom" style="transition-delay: 0.1s;">
-                        <h3>Pure DSP Sine Wave</h3>
-                        <p>Digital Signal Processing ensures zero humming noise in fans and protects sensitive computers/LED TVs.</p>
-                    </div>
-                    <div class="spec-card reveal from-bottom" style="transition-delay: 0.2s;">
-                        <h3>Industrial Shield</h3>
-                        <p>Equipped with Overload, Short-circuit, and advanced Thunderstorm protection modules.</p>
-                    </div>
-                    <div class="spec-card reveal from-bottom" style="transition-delay: 0.3s;">
-                        <h3>Turbo Cooling</h3>
-                        <p>Smart auto-switching fans keep the internal circuit cool during long power outages.</p>
-                    </div>
+        <section class="specs-grid">
+            <div class="card-pro smart-el reveal">
+                <h3 style="color: var(--gold); margin-bottom: 15px;">Smart DSP</h3>
+                <p style="color: var(--text-dim); line-height: 1.6;">Advanced digital signal processing for clean sine wave output.</p>
+            </div>
+            <div class="card-pro smart-el reveal">
+                <h3 style="color: var(--gold); margin-bottom: 15px;">Copper Core</h3>
+                <p style="color: var(--text-dim); line-height: 1.6;">Heavy-duty 100% copper transformers for lifetime performance.</p>
+            </div>
+            <div class="card-pro smart-el reveal">
+                <h3 style="color: var(--gold); margin-bottom: 15px;">2Y Warranty</h3>
+                <p style="color: var(--text-dim); line-height: 1.6;">Full replacement support and home service across Feni.</p>
+            </div>
+        </section>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 100px;">
+            <div class="card-pro reveal">
+                <img src="images/ad056b66-b2bd-405b-9bb6-c4e814b52f66.jpeg" style="width: 100%; border-radius: 20px; margin-bottom: 20px;">
+                <h2>1000VA Legend</h2>
+                <div class="btn-group">
+                    <a href="tel:+8801619288205" class="btn-pro btn-main">Order Now</a>
+                    <a href="https://wa.me/8801619288205" class="btn-pro btn-wa">WhatsApp</a>
                 </div>
-            </section>
-
-            <!-- Products -->
-            <section class="product-section">
-                <h2 class="reveal from-left" style="text-align: center; margin-top: 100px; margin-bottom: 50px;">Available Models</h2>
-                <div class="bento-grid">
-                    <div class="bento-card reveal from-left">
-                        <div class="image-container"><img src="images/ad056b66-b2bd-405b-9bb6-c4e814b52f66.jpeg" alt="1000VA"></div>
-                        <h2 style="margin-bottom: 10px;">1000VA Legend DSP</h2>
-                        <p style="color: var(--text-dim); margin-bottom: 25px; font-size: 0.9rem;">Perfect for 3-4 Fans and 5-6 LED Lights.</p>
-                        <div class="actions">
-                            <a href="tel:+8801619288205" class="btn-main btn-buy">Order Now</a>
-                            <a href="https://wa.me/8801619288205" class="btn-main btn-wa">WhatsApp</a>
-                        </div>
-                    </div>
-                    <div class="bento-card reveal from-right">
-                        <div class="image-container"><img src="images/d36dee41-e88a-478e-812d-9b5bac10032a.jpeg" alt="2000VA"></div>
-                        <h2 style="margin-bottom: 10px;">2000VA Heavy Duty</h2>
-                        <p style="color: var(--text-dim); margin-bottom: 25px; font-size: 0.9rem;">Best for Office, Clinic or Luxury Homes.</p>
-                        <div class="actions">
-                            <a href="tel:+8801619288205" class="btn-main btn-buy">Order Now</a>
-                            <a href="https://wa.me/8801619288205" class="btn-main btn-wa">WhatsApp</a>
-                        </div>
-                    </div>
+            </div>
+            <div class="card-pro reveal">
+                <img src="images/d36dee41-e88a-478e-812d-9b5bac10032a.jpeg" style="width: 100%; border-radius: 20px; margin-bottom: 20px;">
+                <h2>2000VA Pro</h2>
+                <div class="btn-group">
+                    <a href="tel:+8801619288205" class="btn-pro btn-main">Order Now</a>
+                    <a href="https://wa.me/8801619288205" class="btn-pro btn-wa">WhatsApp</a>
                 </div>
-            </section>
-
+            </div>
         </div>
-
-        <footer>
-            <p>Bijoy Singh Dighi Rd, Feni, Bangladesh</p>
-            <p style="font-size: 10px; margin-top: 20px; letter-spacing: 2px;">DEVELOPED BY SHAMIUL HASAN | © 2026</p>
-        </footer>
     </div>
+
+    <footer>
+        <p>BIJOY SINGH DIGHI RD, FENI</p>
+        <p style="margin-top: 10px; color: #fff; font-weight: 800;">DEVELOPED BY SHAMIUL HASAN</p>
+    </footer>
 
     <script>
+        // Mouse Glow Effect
+        const glow = document.getElementById('glow');
+        window.addEventListener('mousemove', (e) => {
+            glow.style.setProperty('--x', e.clientX + 'px');
+            glow.style.setProperty('--y', e.clientY + 'px');
+        });
+
+        // Touch support for Glow
+        window.addEventListener('touchmove', (e) => {
+            glow.style.setProperty('--x', e.touches[0].clientX + 'px');
+            glow.style.setProperty('--y', e.touches[0].clientY + 'px');
+        });
+
+        // Entrance & Scroll Logic
         window.addEventListener('load', () => {
             setTimeout(() => {
-                document.getElementById('preloader').style.opacity = '0';
-                document.getElementById('preloader').style.visibility = 'hidden';
-                
-                const reveals = document.querySelectorAll('.reveal');
-                reveals.forEach((el, index) => {
-                    setTimeout(() => {
-                        el.classList.add('active');
-                    }, 300 + (index * 100));
-                });
-            }, 2000);
+                document.getElementById('preloader').style.display = 'none';
+                handleReveal();
+            }, 1500);
         });
 
-        window.addEventListener('scroll', () => {
+        function handleReveal() {
             const reveals = document.querySelectorAll('.reveal');
             reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const revealTop = el.getBoundingClientRect().top;
-                if (revealTop < windowHeight - 50) {
-                    el.classList.add('active');
-                }
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 50) el.classList.add('active');
             });
-        });
-    </script>
+        }
 
+        window.addEventListener('scroll', handleReveal);
+    </script>
 </body>
 </html>
